@@ -3,10 +3,14 @@ import pickle
 import numpy as np
 
 model1 = pickle.load(open("data/linear_reg.model", 'rb'))
+model2 = pickle.load(open("data/ridge.model", 'rb'))
+model3 = pickle.load(open("data/lasso.model", 'rb'))
+model4 = pickle.load(open("data/bayesian.model", 'rb'))
+model5 = pickle.load(open("data/elastic.model", 'rb'))
 
 st.title("KNOW THE PRICE OF YOUR PREFERRED HOME!")
 
-st.sidebar.write("## Predict House Prices")
+st.sidebar.write("# Predict House Prices")
 st.write("### Just input/pick your preferences below")
 
 # area,bedrooms,bathrooms,stories,
@@ -28,11 +32,11 @@ furnishingstatus = st.radio("Level of furnishing", ["Furnished", "Semi-furnished
 
 
 def to_integers(response):
-    if response == "Yes" or response == "Furnished":
+    if response == "Yes" or response == "Semi-furnished":
         return 1
     elif response == "No" or response == "Not furnished":
         return 0
-    elif response == "Semi-furnished":
+    elif response == "Furnished":
         return 2
 
 
@@ -51,12 +55,16 @@ def input_data(mainroad, guestroom, basement, hotwaterheating, airconditioning, 
 
 
 def predict(data):
-    result = model1.predict(data)
-    return result
+    result1 = model1.predict(data)
+    result2 = model2.predict(data)
+    result3 = model3.predict(data)
+    result4 = model4.predict(data)
+    result5 = model5.predict(data)
+    return [int(result1), int(result2), int(result3), int(result4), int(result5)]
 
 
 data = input_data(mainroad, guestroom, basement, hotwaterheating, airconditioning, prefarea, furnishingstatus)
 data = np.array(data)
 data = data.reshape(-1, 12)
 price = predict(data=data)
-st.sidebar.write("## The Price of your House would be Ksh.{}".format(int(price)))
+st.sidebar.write("## The Price of your House would be Ksh.{}".format(price))

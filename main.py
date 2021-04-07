@@ -31,7 +31,7 @@ def change_to_integers():
     for item in items:
         df[item] = df[item].replace({"yes": 1, "no": 0})
 
-    df['furnishingstatus'] = df['furnishingstatus'].replace({"furnished": 1, "unfurnished": 0, "semi-furnished": 2})
+    df['furnishingstatus'] = df['furnishingstatus'].replace({"furnished": 2, "unfurnished": 0, "semi-furnished": 1})
 
     df.to_csv("data/House_edited.csv")
 
