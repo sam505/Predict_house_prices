@@ -145,7 +145,7 @@ def feature_sel_data_split():
     y_var = df["price"]
 
     x_train, x_test, y_train, y_test = train_test_split(x_var, y_var, test_size=0.2, random_state=0)
-
+    print(x_train.shape)
     return x_train, x_test, y_train, y_test
 
 
@@ -155,27 +155,37 @@ def model():
     model_1 = LinearRegression()
     model_1.fit(x_train, y_train)
     model_1_result = model_1.predict(x_test)
-    pickle.dump(model_1, open("data/linear_reg.model", 'wb'))
+    model_1_file = open("data/linear_reg.model", 'wb')
+    pickle.dump(model_1, model_1_file)
+    model_1_file.close()
 
     ridge = Ridge(alpha=0.5)
     ridge.fit(x_train, y_train)
     ridge_result = ridge.predict(x_test)
-    pickle.dump(ridge, open("data/ridge.model", 'wb'))
+    ridge_file = open("data/ridge.model", 'wb')
+    pickle.dump(ridge, ridge_file)
+    ridge_file.close()
 
     lasso = Lasso(alpha=0.01)
     lasso.fit(x_train, y_train)
     lasso_result = lasso.predict(x_test)
-    pickle.dump(lasso, open("data/lasso.model", 'wb'))
+    lasso_file = open("data/lasso.model", 'wb')
+    pickle.dump(lasso, lasso_file)
+    lasso_file.close()
 
     bayesian = BayesianRidge()
     bayesian.fit(x_train, y_train)
     bayesian_result = bayesian.predict(x_test)
-    pickle.dump(bayesian, open("data/bayesian.model", 'wb'))
+    bayesian_file = open("data/bayesian.model", 'wb')
+    pickle.dump(bayesian, bayesian_file)
+    bayesian_file.close()
 
     elastic = ElasticNet(alpha=0.01)
     elastic.fit(x_train, y_train)
     elastic_result = elastic.predict(x_test)
-    pickle.dump(elastic, open("data/elastic.model", 'wb'))
+    elastic_file = open("data/elastic.model", 'wb')
+    pickle.dump(elastic, elastic_file)
+    elastic_file.close()
 
     return y_test, [model_1_result, ridge_result, elastic_result, lasso_result, bayesian_result]
 
