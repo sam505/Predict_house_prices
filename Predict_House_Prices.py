@@ -10,6 +10,8 @@ model5 = pickle.load(open("data/elastic.model", 'rb'))
 
 st.title("KNOW THE PRICE OF YOUR PREFERRED HOME!")
 
+st.image("data/house1.png")
+
 st.sidebar.write("# Predict House Prices")
 st.write("### Just input/pick your preferences below")
 
@@ -68,3 +70,4 @@ data = np.array(data)
 data = data.reshape(-1, 12)
 price = predict(data=data)
 st.sidebar.write("## The Price of your House would be Ksh.{}".format(int(np.average(price))))
+
