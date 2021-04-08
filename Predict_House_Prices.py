@@ -13,7 +13,7 @@ st.title("KNOW THE PRICE OF YOUR PREFERRED HOME!")
 st.image("data/house1.png")
 
 st.sidebar.write("# Predict House Prices")
-st.write("### Just input/pick your preferences below")
+st.write("### Just enter your preferences below")
 
 # area,bedrooms,bathrooms,stories,
 # mainroad,guestroom,basement,hotwaterheating,
