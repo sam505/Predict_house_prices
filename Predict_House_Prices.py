@@ -67,4 +67,4 @@ data = input_data(mainroad, guestroom, basement, hotwaterheating, airconditionin
 data = np.array(data)
 data = data.reshape(-1, 12)
 price = predict(data=data)
-st.sidebar.write("## The Price of your House would be Ksh.{}".format(price))
+st.sidebar.write("## The Price of your House would be Ksh.{}".format(int(np.average(price))))
